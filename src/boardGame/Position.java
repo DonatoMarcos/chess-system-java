@@ -1,6 +1,7 @@
 package boardGame;
 
-public class Position {
+// This is a class that we don't want to be extended.
+public final class Position {
 	
 	private int row;
 	private int column;
@@ -11,6 +12,10 @@ public class Position {
 		this.column = column;
 	}
 	
+	public Position() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getRow() {
 		return row;
 	}
