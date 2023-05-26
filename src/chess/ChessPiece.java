@@ -2,6 +2,7 @@ package chess;
 
 import boardGame.Board;
 import boardGame.Piece;
+import boardGame.Position;
 
 // This class is an extension over the general Piece clas and, indicates
 // that we'll have a piece for the chess game.
@@ -19,6 +20,11 @@ public abstract class ChessPiece extends Piece {
 	
 	public Color getColor() {
 		return this.color;
+	}
+	
+	protected boolean isThereOpponentPiece(Position position) {
+		ChessPiece piece = (ChessPiece)getBoard().getPiece(position);
+		return (piece != null) && (piece.getColor() != color);
 	}
 
 }

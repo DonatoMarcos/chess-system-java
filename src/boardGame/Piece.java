@@ -29,6 +29,7 @@ public abstract class Piece {
 		return possibleMoves()[position.getRow()][position.getColumn()];
 	}
 	
+	//Check if piece is not stuck.
 	public boolean isThereAnyPossibleMove() {
 		boolean[][] moveMatrix = possibleMoves();
 		for (boolean[] moveRow: moveMatrix) {
