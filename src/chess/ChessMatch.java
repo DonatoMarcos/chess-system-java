@@ -1,6 +1,8 @@
 package chess;
 
+// This is the chess core class.
 import boardGame.Board;
+import boardGame.Piece;
 import boardGame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
@@ -18,11 +20,31 @@ public class ChessMatch {
 		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
 		for (int i = 0; i < board.getRows(); i++) {
 			for (int j=0; j < board.getColumns(); j++) {
-				mat[i][j] = (ChessPiece) board.piece(i,j);
+				mat[i][j] = (ChessPiece) board.getPiece(i,j);
 				
 			}
 		}
 		return mat;
+	}
+	
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		validateSourcePosition(source);
+		Piece capturedPiece = makemove(source,target);
+		return (ChessPiece)capturedPiece;
+	}
+	
+	private void validateSourcePosition(Position position) {
+		if (!board.thereIsAPiece(position))
+			throw new ChessException("There is no piece on pointed position");
+	}
+	
+	private Piece makemove(Position source, Position target) {
+		Piece b = board.removePiece(source);
+		Piece captured = board.removePiece(target);
+		board.placePiece(b, target);
+		return captured;
 	}
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {

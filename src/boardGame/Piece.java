@@ -6,10 +6,10 @@ package boardGame;
 // As I don't this class to be instantiated, I added abstract to it.
 public abstract class Piece {
 	
-	protected Position position;
+	protected Position position; // This is internal position - not game position
 	private Board board;
 	
-	public Piece(Board board) {
+	public Piece(Board board) {  // Constructor indicates that at create time, no position will be set.
 		this.board = board;
 		this.position = null;
 	}

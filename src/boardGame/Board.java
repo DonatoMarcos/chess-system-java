@@ -1,6 +1,7 @@
 package boardGame;
 
 // This is a generic board class - which will not be extended (added final on purpose)
+// It indicates any possible board. It is not specialized.
 public final class Board {
 	
 	private int rows;
@@ -29,7 +30,7 @@ public final class Board {
 	}
 
 	
-	public Piece piece(int row, int column) {
+	public Piece getPiece(int row, int column) {
 		if (!positionExists(row,column)) {
 		   throw new BoardException("Position not on the board");
 		}
@@ -37,7 +38,7 @@ public final class Board {
 	}
 	
 	
-	public Piece piece(Position position) {
+	public Piece getPiece(Position position) {
 		if (!positionExists(position)) {
 		   throw new BoardException("Position not on the board");
 		}
@@ -53,6 +54,20 @@ public final class Board {
 		piece.position = position;
 	}
 	
+	public Piece removePiece(Position position) {
+		if (!positionExists(position))
+			throw new BoardException("Position not on the board");
+
+		Piece aux = getPiece(position);
+		
+		if (aux != null) {
+			aux.position = null;
+			pieces[position.getRow()][position.getColumn()] = null;
+		}
+
+		return aux;
+	}
+	
 	
 	private boolean positionExists(int row, int column) {
 		if ((row    >= 0) && (row    < rows   ) &&
@@ -60,6 +75,8 @@ public final class Board {
 		   return true;
 		else
 		   return false;
+		
+	//	return row>=0&& row<rows && column>=0&&column<columns - equivalent
 	}
 	
 	
@@ -72,7 +89,7 @@ public final class Board {
 		if (!positionExists(position)) {
 		   throw new BoardException("Position not on the board");
 		}
-		return (piece(position) != null);
+		return (getPiece(position) != null);
 	}
 
 }

@@ -1,13 +1,14 @@
 package boardGame;
 
 // This is a class that we don't want to be extended.
+// This class indicates a position in a generic board.
+// So, this is a BOARD position (not a specific game position).
 public final class Position {
 	
 	private int row;
 	private int column;
 	
 	public Position(int row, int column) {
-		super();
 		this.row = row;
 		this.column = column;
 	}
