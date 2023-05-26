@@ -31,6 +31,7 @@ public class UI {
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	
 	public static void printBoard( ChessPiece[][] pieces) {
+		clearScreen();
 		System.out.println(ANSI_WHITE+"      A  B  C  D  E  F  G  H"+ANSI_RESET);
 		System.out.println(ANSI_WHITE+"   ____________________________"+ANSI_RESET);
 		System.out.println(ANSI_WHITE+"   |                          |"+ANSI_RESET);
@@ -69,5 +70,9 @@ public class UI {
 		catch (RuntimeException e) {
 			throw new InputMismatchException("Error reading chess position - range a1-h8");
 		}
+	}
+	
+	public static void clearScreen() {
+		System.out.print("\033[H\033[J");
 	}
 }
