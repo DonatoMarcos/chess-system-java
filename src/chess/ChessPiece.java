@@ -8,7 +8,7 @@ import boardGame.Piece;
 // On top of general board and position, we'll have the color, which may
 // be white or black.
 // Now, which piece type am I? I don't know yet.
-public class ChessPiece extends Piece {
+public abstract class ChessPiece extends Piece {
 	
 	private Color color;
 
